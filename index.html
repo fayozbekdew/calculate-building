@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/formElements.css">
+        <script src="https://api-maps.yandex.ru/2.1/?lang=uz_UZ&apikey=6ac1b054-bf03-4933-b98b-06eff1e957fa" type="text/javascript"></script>
+    <script defer src="/js/calc.js"></script>
+</head>
+<body>
+    <div class="form-group">
+        <div>
+            <label for="buildingType">Тип строения <span class="required">*</span></label>
+        <div class="tooltip-wrapper">
+            <select id="buildingTypes"  class="select-input">
+                <option value="" disabled selected></option>
+                <option value="Дом">Дом</option>
+                <option value="Баня">Баня</option>
+                <option value="Забор">Забор</option>
+                <option value="Бытовка">Бытовка</option>
+                 <option value="Сарай">Сарай</option>
+                  <option value="Пристройка">Пристройка</option>
+                   <option value="Терраса">Терраса</option>
+                    <option value="Крыльцо">Крыльцо</option>
+                    <option value="Беседка">Беседка</option>
+                    <option value="Теплица">Теплица</option>
+            </select>
+            <div class="tooltip-container">
+                <span class="tooltip">ШАГ 1</span>
+              <p>Выберите тип строения</p>
+            </div>
+        </div>
+        </div>
+        <!-- Бытовка,Сарай,Пристройка,Терраса,КрыБеседка,Теплицаплица -->
+        <form id="other-submit">
+            <div id="otherType" class="none">
+                <!-- 1 -->
+                <label for="buildingType">Длина строения, м<span class="required">*</span></label>
+                <div class="tooltip-wrapper">
+                  <span class="count-input">
+                    <input name="lengthBuilding" type="number" value="12"/>
+                    <span class="counter">
+                    <small>+</small>
+                    <small>-</small>
+                    </span>
+                  </span>
+                    <div class="tooltip-container">
+                        <span class="tooltip">ШАГ 2</span>
+                        <p>Укажите длину строения в метрах</p>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <label for="buildingType">Ширина строения, м<span class="required">*</span></label>
+                <div class="tooltip-wrapper">
+                  <span class="count-input">
+                    <input name="widthBuilding" type="number" value="12"/>
+                    <span class="counter">
+                    <small>+</small>
+                    <small>-</small>
+                    </span>
+                  </span>
+                    <div class="tooltip-container">
+                        <span class="tooltip">ШАГ 3</span>
+                        <p>Укажите ширину строения в метрах</p>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <label for="buildingType">Длина свай, м <span class="required">*</span></label>
+                <div class="tooltip-wrapper">
+                    <select name="lengthPiles" class="select-input">
+                        <option value="2">2.0</option>
+                        <option value="2.5" selected>2.5 (стандарт)</option>
+                        <option value="3">3</option>
+                        <option value="3.5">3.5</option>
+                         <option value="4">4</option>
+                          <option value="4.5">4.5</option>
+                    </select>
+                    <div class="tooltip-container">
+                        <span class="tooltip">ШАГ 4</span>
+                      <p>Выберите длину свай в метрах</p>
+                    </div>
+                </div>
+                <!-- 4 -->
+                <label for="buildingType">Диаметр свай, мм <span class="required">*</span></label>
+                <div class="tooltip-wrapper">
+                    <select name="diameterPiles" class="select-input">
+                        <option value="76" selected>76 (рекомендованный)</option>
+                        <option value="89">89</option>
+                        <option value="108">108</option>
+                        <option value="133">133</option>
+                    </select>
+                    <div class="tooltip-container">
+                        <span class="tooltip">ШАГ 5</span>
+                      <p>Выберите диаметр свай в миллиметрах</p>
+                    </div>
+                </div>
+                <!-- 5 -->
+                <label for="buildingType">Обвязка </label>
+                <div class="tooltip-wrapper">
+                    <select name="harness" class="select-input">
+                        <option value="" selected disabled></option>
+                        <option value="Швеллером по периметру">Швеллером по периметру</option>
+                        <option value="Швеллером полная клетка">Швеллером полная клетка</option>
+                        <option value="Уголком 50*50 мм (укосинами) по периметру">Уголком 50*50 мм (укосинами) по периметру</option>
+                        <option value="Уголком 50*50 мм (укосинами) полная клетка">Уголком 50*50 мм (укосинами) полная клетка</option>
+                        <option value="Проф. трубой 20*40 мм по периметру">Проф. трубой 20*40 мм по периметру</option>
+                        <option value="Проф. трубой 20*40 мм полная клетка">Проф. трубой 20*40 мм полная клетка</option>
+                    </select>
+                    <div class="tooltip-container">
+                        <span class="tooltip">ШАГ 6</span>
+                      <p>Выберите тип обвязки</p>
+                    </div>
+                </div>
+                <!-- 6 -->
+                <label for="buildingType">Адрес доставки</label>
+                <div class="tooltip-wrapper">
+                    
+                    <input data-map="" class="map-input openMapButtonOther"  type="button" id="openMapButtonOther" value="">
+                    <div class="tooltip-container">
+                        <span class="tooltip">ШАГ 7</span>
+                      <p>Выберите адрес доставки</p>
+                    </div>
+                </div>
+                <!-- 7 -->
+                <label for="buildingType">Монтаж</label>
+                <div class="tooltip-wrapper">
+                    <select name="montage"  class="select-input">
+                        <option selected disabled></option>
+                        <option value="Ручной">Ручной</option>
+                        <option value="Спецтехникой">Спецтехникой (1 смена 7+1 часов)</option>
+                    </select>
+                    <div class="tooltip-container">
+                        <span class="tooltip">ШАГ 8</span>
+                      <p>Выберите тип обвязки</p>
+                    </div>
+                </div>
+                </div>
+        </form>
+        <!-- Бытовка,Сарай,Пристройка,Терраса,КрыБеседка,Теплицаплица -->
+        <!-- Дом,Баня type start-->
+        <form id="dom-bathroom-submit" >
+        
+            <div id="domType" class="none">
+                <label for="buildingType">Вид <span class="required">*</span></label>
+                <div class="tooltip-wrapper">
+            <select name="homeBuildType" id="homeBuildType"  class="select-input">
+                <option value="" disabled selected></option>
+                <option value="Каркасный">Каркасный</option>
+                <option value="Из СИП панелей">Из СИП панелей</option>
+                <option value="Щитовой">Щитовой</option>
+                <option value="С мансардой">С мансардой</option>
+                 <option value="Из бруса">Из бруса</option>
+                  <option value="Из бревна">Из бревна</option>
+                  <option value="Двухэтажный">Двухэтажный</option>
+            </select>
+            <div class="tooltip-container">
+                <span class="tooltip">ШАГ 2</span>
+              <p>Выберите тип дома</p>
+            </div>
+        </div>
+        </div >
+        <div id="home-bathroom" class="none">
+        <!-- 1 -->
+        <label for="buildingType">Длина строения, м<span class="required">*</span></label>
+        <div class="tooltip-wrapper">
+          <span class="count-input">
+            <input name="lengthBuilding" type="number" value="12"/>
+            <span class="counter">
+            <small>+</small>
+            <small>-</small>
+            </span>
+          </span>
+            <div class="tooltip-container">
+                <span class="tooltip">ШАГ 2</span>
+                <p>Укажите длину строения в метрах</p>
+            </div>
+        </div>
+        <!-- 2 -->
+        <label for="buildingType">Ширина строения, м<span class="required">*</span></label>
+        <div class="tooltip-wrapper">
+          <span class="count-input">
+            <input name="widthBuilding" type="number" value="12"/>
+            <span class="counter">
+            <small>+</small>
+            <small>-</small>
+            </span>
+          </span>
+            <div class="tooltip-container">
+                <span class="tooltip">ШАГ 3</span>
+                <p>Укажите ширину строения в метрах</p>
+            </div>
+        </div>
+        <!-- 3 -->
+        <label for="buildingType">Длина свай, м <span class="required">*</span></label>
+        <div class="tooltip-wrapper">
+            <select name="lengthPiles" class="select-input">
+                <option value="2">2.0</option>
+                <option value="2.5" selected>2.5 (стандарт)</option>
+                <option value="3">3</option>
+                <option value="3.5">3.5</option>
+                 <option value="4">4</option>
+                  <option value="4.5">4.5</option>
+            </select>
+            <div class="tooltip-container">
+                <span class="tooltip">ШАГ 4</span>
+              <p>Выберите длину свай в метрах</p>
+            </div>
+        </div>
+        <!-- 4 -->
+        <label for="buildingType">Диаметр свай, мм <span class="required">*</span></label>
+        <div class="tooltip-wrapper">
+            <select name="diameterPiles"  class="select-input">
+                <option value="76" >76 </option>
+                <option value="89">89</option>
+                <option value="108" selected>108 (рекомендованный)</option>
+                <option value="133">133</option>
+            </select>
+            <div class="tooltip-container">
+                <span class="tooltip">ШАГ 5</span>
+              <p>Выберите диаметр свай в миллиметрах</p>
+            </div>
+        </div>
+        <!-- 5 -->
+        <label for="buildingType">Обвязка </label>
+        <div class="tooltip-wrapper">
+            <select name="harness" class="select-input">
+                <option value="" selected disabled></option>
+                <option value="Швеллером по периметру">Швеллером по периметру</option>
+                <option value="Швеллером полная клетка">Швеллером полная клетка</option>
+                <option value="Уголком 50*50 мм (укосинами) по периметру">Уголком 50*50 мм (укосинами) по периметру</option>
+                <option value="Уголком 50*50 мм (укосинами) полная клетка">Уголком 50*50 мм (укосинами) полная клетка</option>
+                <option value="Проф. трубой 20*40 мм по периметру">Проф. трубой 20*40 мм по периметру</option>
+                <option value="Проф. трубой 20*40 мм полная клетка">Проф. трубой 20*40 мм полная клетка</option>
+            </select>
+            <div class="tooltip-container">
+                <span class="tooltip">ШАГ 6</span>
+              <p>Выберите тип обвязки</p>
+            </div>
+        </div>
+        <!-- 6 -->
+        <label for="buildingType">Адрес доставки</label>
+                <div class="tooltip-wrapper">
+                    <input data-map="" class="map-input openMapButtonHome"  type="button" id="openMapButtonHome" value="">
+                    
+                    <div class="tooltip-container">
+                        <span class="tooltip">ШАГ 7</span>
+                      <p>Выберите адрес доставки</p>
+                    </div>
+                </div>
+        <!-- 7 -->
+        <label for="buildingType">Монтаж</label>
+        <div class="tooltip-wrapper">
+            <select name="montage" class="select-input">
+                <option value="" selected disabled></option>
+                <option value="Ручной">Ручной</option>
+                <option value="Спецтехникой">Спецтехникой (1 смена 7+1 часов)</option>
+            </select>
+            <div class="tooltip-container">
+                <span class="tooltip">ШАГ 8</span>
+              <p>Выберите тип обвязки</p>
+            </div>
+        </div>
+        </div>
+        </form>
+        <!-- Дом type end -->
+         <!-- Забор type start -->
+        <form id="zabor-submit">
+            <div id="zaborType" class="none">
+                <!-- 1 -->
+           <label for="buildingType">Длина забора, м<span class="required">*</span></label>
+           <div class="tooltip-wrapper">
+             <span class="count-input">
+               <input name="lengthZabor" type="number" value="12"/>
+               <span class="counter">
+               <small>+</small>
+               <small>-</small>
+               </span>
+             </span>
+               <div class="tooltip-container">
+                   <span class="tooltip">ШАГ 2</span>
+                   <p>Укажите длину забора в метрах</p>
+               </div>
+           </div>
+           <!-- 2 -->
+           <label for="buildingType">Тип сваи <span class="required">*</span></label>
+           <div class="tooltip-wrapper">
+               <select name="typePile" class="select-input">
+                   <option value="57x3500" selected>57x3500</option>
+                   <option value="57x4000">57x4000</option>
+                   <option value="57x1500/50x50x2000">57x1500/50x50x2000</option>
+                   <option value="76x3500">76x3500</option>
+                    <option value="76x4000">76x4000</option>
+                     <option value="76x1500/60x60x2000">76x1500/60x60x2000</option>
+                   <option value="50x50x3500">50x50x3500</option>
+                   <option value="50x50x4000">50x50x4000</option>
+                   <option value="60x60x3500">60x60x3500</option>
+                   <option value="60x60x4000">60x60x4000</option>
+               </select>
+               <div class="tooltip-container">
+                   <span class="tooltip">ШАГ 3</span>
+                 <p>Выберете тип свай</p>
+               </div>
+           </div>
+           <!-- 3 -->
+           <label for="buildingType">Каркас забора </label>
+           <div class="tooltip-wrapper">
+               <select name="fenceFrame" class="select-input">
+                   <option value="Да" >Да</option>
+                   <option value="Нет">Нет</option>
+               </select>
+               <div class="tooltip-container">
+                   <span class="tooltip">ШАГ 4</span>
+                 <p>Укажите нужен ли каркас забора</p>
+               </div>
+           </div>
+           <!-- 5 -->
+           <label for="buildingType">Навесной материал</label>
+           <div class="tooltip-wrapper">
+               <select name="otherMaterial" class="select-input">
+                   <option value="Профлист">Профлист</option>
+                   <option value="Евроштакетник">Евроштакетник</option>
+               </select>
+               <div class="tooltip-container">
+                   <span class="tooltip">ШАГ 5</span>
+                 <p>Выберете навесной материал</p>
+               </div>
+           </div>
+           <!-- 6 -->
+           <label for="buildingType">Адрес доставки</label>
+                <div class="tooltip-wrapper">
+                    <input data-map="" class="map-input openMapButtonZabor"  type="button" id="openMapButtonZabor" value="">
+                    <div class="tooltip-container">
+                        <span class="tooltip">ШАГ 6</span>
+                      <p>Выберите адрес доставки</p>
+                    </div>
+                </div>
+           <!-- 7 -->
+           <label for="buildingType">Монтаж</label>
+           <div class="tooltip-wrapper">
+               <select name="montage" class="select-input">
+                   <option value="" selected disabled></option>
+                   <option value="Ручной">Ручной</option>
+                   <option value="Спецтехникой">Спецтехникой (1 смена 7+1 часов)</option>
+               </select>
+               <div class="tooltip-container">
+                   <span class="tooltip">ШАГ 7</span>
+                 <p>Выберите тип обвязки</p>
+               </div>
+           </div>
+           </div>
+        </form>
+        <!-- Modal -->
+    <div id="mapModal" class="modal-map">
+        <div class="modal-map-content">
+            <span id="closeModal" class="close-mod">&times;</span>
+            <div id="map" style="width: 100%; height: 100%;"></div>
+            <div id="info"></div>
+        </div>
+    </div>
+           </div>
+           <button class="none" id="submit-btn">Submit</button>
+        </body>
+</html>
