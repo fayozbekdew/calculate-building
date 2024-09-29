@@ -3,8 +3,8 @@ let activeType = null;
 let activeMap = "";
 
 typeBuilding.addEventListener("change", () => {
-  if (!document.querySelector(".price-table").classList.contains("none")) {
-    document.querySelector(".price-table").classList.add("none");
+  if (!document.querySelector(".price-table-home").classList.contains("none")) {
+    document.querySelector(".price-table-home").classList.add("none");
   }
   hiddenTooltipFn(document.querySelectorAll('.tooltip-container'),'visible')
   document.getElementById("submit-btn").classList.remove("none");
@@ -119,9 +119,53 @@ document.getElementById("submit-btn").addEventListener("click", (e) => {
       montage,
       dostavka,
     };
+    let buildingSvayCount = ((lengthBuilding / 2) +1) * ((widthBuilding /2) + 1)
+    //svay
+    let homeDiametr = document.getElementById('home-diametr')
+    let homeLength = document.getElementById('home-length')
+    let homeOneCost = document.getElementById('home-one-cost') // bu lengh x diametr ni qiymatini tekshirganda teng bolgan qiymatni oladi
+    let svayCount = document.getElementById('svay-count')
+    let totalSvaySum = document.getElementById('total-svay-sum')
+    homeDiametr.textContent = diameterPiles
+    homeLength.textContent = lengthPiles * 1000
+    homeOneCost.textContent += `${'2690.00'} руб`
+    svayCount.textContent = buildingSvayCount
+    totalSvaySum.textContent = `${buildingSvayCount * 2690.00} руб`
+    //ugolok
+    harness === 'Швеллером по периметру' ? document.getElementById('ugolok').classList.remove('none') : document.getElementById('ugolok').classList.add('none') 
+    let ugolokPrice = 290.00
+    let ugolokCount = document.getElementById('ugolokCount')
+    let ugolokTotal = document.getElementById('ugolokTotal')
+    ugolokCount.textContent = buildingSvayCount
+    ugolokTotal.textContent = `${buildingSvayCount * ugolokPrice} руб`
+    //ruchnoyMontaj
+    montage != 'Ручной' ? document.getElementById('ruchnoyMontaj').classList.add('none') : document.getElementById('ruchnoyMontaj').classList.remove('none')
+    montage === 'Спецтехникой' ? document.getElementById('spetsMontaj').classList.remove('none') : document.getElementById('spetsMontaj').classList.add('none') 
+    montage === 'Спецтехникой' ? document.getElementById('spetsMontaj2').classList.remove('none') : document.getElementById('spetsMontaj2').classList.add('none') 
+    let ruchnoyMontajPrice =  `1190.00`
+    let ruchnoyMontajPriceEl = document.getElementById('ruchnoyMontajPrice')
+    let ruchnoyMontajCount = document.getElementById('ruchnoyMontajCount')
+    let ruchnoyMontajTotal = document.getElementById('ruchnoyMontajTotal')
+    ruchnoyMontajPriceEl.textContent = `${ruchnoyMontajPrice} руб`
+    ruchnoyMontajCount.textContent = buildingSvayCount
+    ruchnoyMontajTotal.textContent = `${buildingSvayCount * ruchnoyMontajPrice} руб`
+    //obyazka
+    document.getElementById('obyazkaName').textContent = 'Обвязка' +harness
+    document.getElementById('obyazkaPrice').textContent = '1150.00 руб'
+    document.getElementById('obyazkaLength').textContent = '60 m'
+    document.getElementById('obyazkaTotal').textContent = `${1150.00 * 60} руб`
+    //montajObyazka
+    let montajObyazkaPrice = '290.00'
+    document.getElementById('montajObyazkaPrice').textContent = montajObyazkaPrice + 'руб'
+    document.getElementById('montajObyazkaLeng').textContent = '60 m'
+    document.getElementById('montajObyazkaTotal').textContent = `${montajObyazkaPrice * 60} руб`
+    
+
+    
+
 
     console.log(data);
-    document.querySelector(".price-table").classList.remove("none");
+    document.querySelector(".price-table-home").classList.remove("none");
     document.getElementById("dom-bathroom-submit").reset();
   } else if (formData && activeType === "Забор") {
     const lengthZabor = formData.get("lengthZabor");

@@ -362,7 +362,7 @@
            </div>
            <button class="none" id="submit-btn">Submit</button>
 <!-- Result-table -->
-<div class="price-table none">
+<div class="price-table-home none">
     <table>
       <thead>
         <tr>
@@ -374,47 +374,49 @@
       </thead>
       <tbody>
         <tr>
-          <td>Свая 57x4000</td>
-          <td>2190.00 руб</td>
-          <td>3 шт</td>
-          <td>6 570.00 руб</td>
+          <td>Свая <small style="font-size:17px ;" id="home-diametr"></small>x<small style="font-size:17px ;" id="home-length"></small></td>
+          <td id="home-one-cost"></td>
+          <td id="svay-count"></td>
+          <td id="total-svay-sum">руб</td>
         </tr>
-        <tr>
-          <td>Заглушка 57</td>
-          <td>90.00 руб</td>
-          <td>3 шт</td>
-          <td>270.00 руб</td>
-        </tr>
-        <tr>
-          <td>Ручной монтаж свай</td>
-          <td>1190.00 руб</td>
-          <td>3 шт</td>
-          <td>3 570.00 руб</td>
-        </tr>
-        <tr>
-          <td>Каркас забора</td>
-          <td>1150.00 руб</td>
-          <td>8 м</td>
-          <td>9 200.00 руб</td>
-        </tr>
-        <tr>
-          <td>Монтаж каркаса забора</td>
+        <tr id="ugolok" class="none">
+          <td>Оголовок 200x200</td>
           <td>290.00 руб</td>
-          <td>8 м</td>
-          <td>2 320.00 руб</td>
+          <td id="ugolokCount"></td>
+          <td id="ugolokTotal"></td>
+        </tr>
+        <tr id="ruchnoyMontaj" class="">
+          <td>Ручной монтаж свай</td>
+          <td id="ruchnoyMontajPrice"></td>
+          <td id="ruchnoyMontajCount"></td>
+          <td id="ruchnoyMontajTotal"></td>
+        </tr>
+        <!-- спецтехникой montaj -->
+        <tr id="spetsMontaj" class="none">
+            <td>Монтаж свай спецтехникой</td>
+            <td>990.00 руб</td>
+            <td>4 шт</td>
+            <td>3 960.00 руб</td>
+          </tr>
+          <tr id="spetsMontaj2" class="none">
+            <td>Монтаж профлиста</td>
+            <td>390.00 руб</td>
+            <td>4 шт</td>
+            <td>1 560.00 руб</td>
+          </tr>
+        <tr>
+          <td id="obyazkaName"></td>
+          <td id="obyazkaPrice"></td>
+          <td id="obyazkaLength"></td>
+          <td id="obyazkaTotal"></td>
         </tr>
         <tr>
-          <td>Профлист</td>
-          <td>990.00 руб</td>
-          <td>4 шт</td>
-          <td>3 960.00 руб</td>
+          <td>Монтаж обвязки</td>
+          <td id="montajObyazkaPrice"></td>
+          <td id="montajObyazkaLeng">8 м</td>
+          <td id="montajObyazkaTotal"></td>
         </tr>
-        <tr>
-          <td>Монтаж профлиста</td>
-          <td>390.00 руб</td>
-          <td>4 шт</td>
-          <td>1 560.00 руб</td>
-        </tr>
+        
       </tbody>
     </table>
     <span class="result-bottom">
