@@ -3,6 +3,10 @@ let activeType = null;
 let activeMap = "";
 
 typeBuilding.addEventListener("change", () => {
+  if (!document.querySelector(".price-table").classList.contains("none")) {
+    document.querySelector(".price-table").classList.add("none");
+  }
+  hiddenTooltipFn(document.querySelectorAll('.tooltip-container'),'visible')
   document.getElementById("submit-btn").classList.remove("none");
   if (typeBuilding.value === "Дом") {
     activeMap = "openMapButtonHome";
@@ -84,6 +88,7 @@ function changeType(type) {
 
 document.getElementById("submit-btn").addEventListener("click", (e) => {
   e.preventDefault();
+  hiddenTooltipFn(document.querySelectorAll('.tooltip-container'),'hidden')
   let formData;
   if (activeType === "Дом" || activeType === "Баня") {
     formData = new FormData(document.getElementById("dom-bathroom-submit"));
@@ -101,7 +106,9 @@ document.getElementById("submit-btn").addEventListener("click", (e) => {
     const diameterPiles = formData.get("diameterPiles");
     const harness = formData.get("harness");
     const montage = formData.get("montage");
-    const dostavka = document.querySelector("#openMapButtonHome").getAttribute('data-map')
+    const dostavka = document
+      .querySelector("#openMapButtonHome")
+      .getAttribute("data-map");
     let data = {
       homeBuildType,
       lengthBuilding,
@@ -110,9 +117,11 @@ document.getElementById("submit-btn").addEventListener("click", (e) => {
       diameterPiles,
       harness,
       montage,
-        dostavka
+      dostavka,
     };
+
     console.log(data);
+    document.querySelector(".price-table").classList.remove("none");
     document.getElementById("dom-bathroom-submit").reset();
   } else if (formData && activeType === "Забор") {
     const lengthZabor = formData.get("lengthZabor");
@@ -120,16 +129,19 @@ document.getElementById("submit-btn").addEventListener("click", (e) => {
     const fenceFrame = formData.get("fenceFrame");
     const otherMaterial = formData.get("otherMaterial");
     const montage = formData.get("montage");
-    const dostavka = document.querySelector("#openMapButtonZabor").getAttribute('data-map')
+    const dostavka = document
+      .querySelector("#openMapButtonZabor")
+      .getAttribute("data-map");
     let data = {
       lengthZabor,
       typePile,
       fenceFrame,
       otherMaterial,
       montage,
-        dostavka
+      dostavka,
     };
     console.log(data);
+    document.querySelector(".price-table").classList.remove("none");
     document.getElementById("zabor-submit").reset();
   } else if (formData && activeType === "other") {
     const lengthBuilding = formData.get("lengthBuilding");
@@ -138,7 +150,9 @@ document.getElementById("submit-btn").addEventListener("click", (e) => {
     const diameterPiles = formData.get("diameterPiles");
     const harness = formData.get("harness");
     const montage = formData.get("montage");
-    const dostavka = document.querySelector("#openMapButtonOther").getAttribute('data-map')
+    const dostavka = document
+      .querySelector("#openMapButtonOther")
+      .getAttribute("data-map");
     let data = {
       lengthBuilding,
       widthBuilding,
@@ -149,6 +163,7 @@ document.getElementById("submit-btn").addEventListener("click", (e) => {
       dostavka,
     };
     console.log(data);
+    document.querySelector(".price-table").classList.remove("none");
     document.getElementById("other-submit").reset();
   }
 });
@@ -175,18 +190,24 @@ function initMap() {
       let distance = ymaps.coordSystem.geo
         .getDistance(officeCoordinates, coords)
         .toFixed(2);
-      document.getElementById("openMapButtonHome").value = `Расстояние доставки: ${(
+      document.getElementById(
+        "openMapButtonHome"
+      ).value = `Расстояние доставки: ${(distance / 1000).toFixed(1)} km`;
+      document.getElementById(
+        "openMapButtonOther"
+      ).value = `Расстояние доставки: ${(distance / 1000).toFixed(1)} km`;
+      document.getElementById(
+        "openMapButtonZabor"
+      ).value = `Расстояние доставки: ${(distance / 1000).toFixed(1)} km`;
+      document.getElementById("openMapButtonHome").dataset.map = (
         distance / 1000
-      ).toFixed(1)} km`;
-      document.getElementById("openMapButtonOther").value = `Расстояние доставки: ${(
+      ).toFixed(1);
+      document.getElementById("openMapButtonOther").dataset.map = (
         distance / 1000
-      ).toFixed(1)} km`;
-      document.getElementById("openMapButtonZabor").value = `Расстояние доставки: ${(
+      ).toFixed(1);
+      document.getElementById("openMapButtonZabor").dataset.map = (
         distance / 1000
-      ).toFixed(1)} km`;
-      document.getElementById("openMapButtonHome").dataset.map = (distance /1000).toFixed(1)
-      document.getElementById("openMapButtonOther").dataset.map = (distance /1000).toFixed(1)
-      document.getElementById("openMapButtonZabor").dataset.map = (distance /1000).toFixed(1)
+      ).toFixed(1);
       // Tanlangan nuqtani belgilash
       let selectedPoint = new ymaps.Placemark(coords, {
         balloonContent: `Tanlangan joy: ${coords[0].toFixed(
@@ -217,33 +238,33 @@ document.querySelector("#openMapButtonHome").onclick = function () {
 };
 
 document.querySelector("#openMapButtonOther").onclick = function () {
-    document.getElementById("mapModal").style.display = "block";
-    // Xarita mavjud bo‘lsa, ofis markeri qayta qo‘shiladi
-    if (map) {
-      map.geoObjects.remove(officeMarker); // Eskisini olib tashlaymiz
-      officeMarker = new ymaps.Placemark(officeCoordinates, {
-        balloonContent: "Kompaniya Ofisi",
-      });
-      map.geoObjects.add(officeMarker); // Yangi marker qo‘shiladi
-      map.container.fitToViewport(); // Xarita o‘lchamlarini yangilash
-    } else {
-      initMap(); // Agar xarita hali yaratilmagan bo‘lsa, yaratamiz
-    }
-  };
-  document.querySelector("#openMapButtonZabor").onclick = function () {
-    document.getElementById("mapModal").style.display = "block";
-    // Xarita mavjud bo‘lsa, ofis markeri qayta qo‘shiladi
-    if (map) {
-      map.geoObjects.remove(officeMarker); // Eskisini olib tashlaymiz
-      officeMarker = new ymaps.Placemark(officeCoordinates, {
-        balloonContent: "Kompaniya Ofisi",
-      });
-      map.geoObjects.add(officeMarker); // Yangi marker qo‘shiladi
-      map.container.fitToViewport(); // Xarita o‘lchamlarini yangilash
-    } else {
-      initMap(); // Agar xarita hali yaratilmagan bo‘lsa, yaratamiz
-    }
-  };
+  document.getElementById("mapModal").style.display = "block";
+  // Xarita mavjud bo‘lsa, ofis markeri qayta qo‘shiladi
+  if (map) {
+    map.geoObjects.remove(officeMarker); // Eskisini olib tashlaymiz
+    officeMarker = new ymaps.Placemark(officeCoordinates, {
+      balloonContent: "Kompaniya Ofisi",
+    });
+    map.geoObjects.add(officeMarker); // Yangi marker qo‘shiladi
+    map.container.fitToViewport(); // Xarita o‘lchamlarini yangilash
+  } else {
+    initMap(); // Agar xarita hali yaratilmagan bo‘lsa, yaratamiz
+  }
+};
+document.querySelector("#openMapButtonZabor").onclick = function () {
+  document.getElementById("mapModal").style.display = "block";
+  // Xarita mavjud bo‘lsa, ofis markeri qayta qo‘shiladi
+  if (map) {
+    map.geoObjects.remove(officeMarker); // Eskisini olib tashlaymiz
+    officeMarker = new ymaps.Placemark(officeCoordinates, {
+      balloonContent: "Kompaniya Ofisi",
+    });
+    map.geoObjects.add(officeMarker); // Yangi marker qo‘shiladi
+    map.container.fitToViewport(); // Xarita o‘lchamlarini yangilash
+  } else {
+    initMap(); // Agar xarita hali yaratilmagan bo‘lsa, yaratamiz
+  }
+};
 
 document.getElementById("closeModal").onclick = function () {
   document.getElementById("mapModal").style.display = "none";
@@ -256,3 +277,16 @@ window.onclick = function (event) {
     map.geoObjects.removeAll(); // Xarita tozalash
   }
 };
+
+function hiddenTooltipFn(arr,condition){
+    if(condition == 'visible'){
+        arr.forEach(el => {
+            el.style.display = 'flex'
+        })
+    }else if(condition === 'hidden'){
+        arr.forEach(el => {
+            el.style.display = 'none'
+        })
+    }
+    
+}
